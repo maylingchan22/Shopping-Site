@@ -91,7 +91,7 @@ class CheckoutView(generic.FormView):
     form_class = AddressForm
 
     def get_success_url(self):
-        return reverse("home")
+        return reverse("cart:payment")
 
     def form_valid(self, form):
         order = get_or_set_order_session(self.request)
@@ -141,3 +141,11 @@ class CheckoutView(generic.FormView):
         context = super(CheckoutView, self).get_context_data(**kwargs)
         context['order'] = get_or_set_order_session(self.request)
         return context
+
+
+class PaymentView(generic.TemplateView):
+    template_name = 'cart/payment.html'
+
+
+class ThankYouView(generic.TemplateView):
+    template_name = 'cart/thanks.html'

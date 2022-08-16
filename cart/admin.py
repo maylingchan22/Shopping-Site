@@ -5,7 +5,7 @@ from .models import (
     Order,
     ColourVariation,
     SizeVariation,
-    Address
+    Address,
 )
 
 

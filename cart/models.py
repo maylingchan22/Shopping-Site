@@ -1,8 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.shortcuts import reverse
-from django.db.models.signals import pre_save
-from django.utils.text import slugify
+
 
 User = get_user_model()
 
@@ -95,13 +94,6 @@ class Order(models.Model):
     shipping_address = models.ForeignKey(
         Address, related_name='shipping_address', blank=True, null=True, on_delete=models.SET_NULL)
 
-    def __str__(self):
-        return self.reference_number
-
-    @property
-    def reference_number(self):
-        return f"ORDER-{self.pk}"
-
     def get_raw_subtotal(self):
         total = 0
         for order_item in self.items.all():
@@ -121,31 +113,3 @@ class Order(models.Model):
     def get_total(self):
         total = self.get_raw_subtotal()
         return "{:.2f}".format(total / 100)
-
-
-class Payment(models.Model):
-    PAYMENT_CHOICES = (
-        ('Paypal', 'Paypal'),
-    )
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE, related_name="payments")
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_CHOICES)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    successful = models.BooleanField(default=False)
-    amount = models.FloatField()
-    raw_response = models.TextField()
-
-    def __str__(self):
-        return self.reference_number
-
-    @property
-    def reference_number(self):
-        return f"PAYMENT-{self.order}-{self.pk}"
-
-
-def pre_save_product_reciever(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = slugify(instance.title)
-
-
-pre_save.connect(pre_save_product_reciever, sender=Product)
