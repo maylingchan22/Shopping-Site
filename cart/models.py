@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.shortcuts import reverse
@@ -27,6 +28,16 @@ class Address(models.Model):
         verbose_name_plural = 'Addresses'
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name
+
+
 class ColourVariation(models.Model):
     name = models.CharField(max_length=50)
 
@@ -52,6 +63,8 @@ class Product(models.Model):
     active = models.BooleanField(default=False)
     available_colours = models.ManyToManyField(ColourVariation)
     available_sizes = models.ManyToManyField(SizeVariation)
+    primary_category = models.ForeignKey(
+        Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

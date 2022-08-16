@@ -135,13 +135,6 @@
                 <div class="site-top-icons">
                   <ul>
                     <li>
-                      {% if request.user.is_authenticated %} {% else %}
-                      <a href="{% url 'account_login' %}"
-                        ><span><i class="fas fa-sign-in-alt"></i></span
-                      ></a>
-                      {% endif %}
-                    </li>
-                    <li>
                       <a href="{% url 'cart:summary' %}" class="site-cart">
                         <span><i class="fas fa-shopping-cart"></i></span>
                         <span class="count">{{request|cart_item_count}}</span>

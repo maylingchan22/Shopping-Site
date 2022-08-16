@@ -4,9 +4,12 @@
       <li><a href="/">Home</a></li>
       <li><a href="{% url 'cart:product-list' %}">Shop</a></li>
       <li><a href="{% url 'contact' %}">Contact</a></li>
-      {% if request.user.is_staff %}
-      <li><a href="/">Staff</a></li>
+      {% if request.user.is_authenticated %}
+      <li><a href="{% url 'account_logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'account_login' %}">Login</a> / <a href="{% url 'account_signup' %}">SignUp</a></li>
       {% endif %}
+      </li>
     </ul>
   </div>
 </nav>

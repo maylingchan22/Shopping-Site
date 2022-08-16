@@ -1,14 +1,27 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
-from .models import Product, OrderItem, Address
+from .models import Product, OrderItem, Address, Category
 from .utils import get_or_set_order_session
 from .forms import AddToCartForm, AddressForm
 
 
 class ProductListView(generic.ListView):
     template_name = "cart/product_list.html"
-    queryset = Product.objects.all()
+
+    def get_queryset(self):
+        qs = Product.objects.all()
+        category = self.request.GET.get('category', None)
+        if category:
+            qs = qs.filter(primary_category__name=category)
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        context.update({
+            "categories": Category.objects.values("name")
+        })
+        return context
 
 
 class ProductDetailView(generic.FormView):

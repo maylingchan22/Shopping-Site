@@ -6,6 +6,7 @@ from .models import (
     ColourVariation,
     SizeVariation,
     Address,
+    Category
 )
 
 
@@ -20,6 +21,7 @@ class AddressAdmin(admin.ModelAdmin):
     ]
 
 
+admin.site.register(Category)
 admin.site.register(ColourVariation)
 admin.site.register(SizeVariation)
 admin.site.register(Product)
