@@ -111,18 +111,7 @@ class Order(models.Model):
         total = 0
         for order_item in self.items.all():
             total += order_item.get_raw_total_item_price()
-        return total
-
-    def get_subtotal(self):
-        subtotal = self.get_raw_subtotal()
-        return "{:.2f}".format(subtotal / 100)
-
-    def get_raw_total(self):
-        subtotal = self.get_raw_subtotal()
-        # add tax, add delivery, subtract discount code
-        # total = subtotal - discounts + tax + delivery
-        return subtotal
+        return "{:.2f}".format(total / 100)
 
     def get_total(self):
-        total = self.get_raw_subtotal()
-        return "{:.2f}".format(total / 100)
+        return self.get_raw_subtotal()

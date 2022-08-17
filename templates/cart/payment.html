@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block content %}
 <div class="bg-light py-3">
   <div class="container">
     <div class="row">
@@ -11,35 +14,35 @@
     </div>
   </div>
 </div>
-<div class="site-section">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div id="paymentInfo">
-          <p>Order total: ${{ order.get_total }}</p>
-          <h4>Select a payment method</h4>
-          <div id="button-container"></div>
-          <a
-            class="btn btn-outline-success mb-3 mt-3"
-            href="{% url 'cart:thank-you' %}"
-            role="button"
-            id="alertSuccess"
-          >
-            Your payment was successful.
-          </a>
-          <input
-            class="btn btn-outline-danger mb-3"
-            type="button"
-            id="alertFailure"
-            value="Your payment failed. Please try again."
-            onclick="showMessage()"
-          />
+  <div class="site-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div id="paymentInfo">
+            <h4>Select a payment method</h4>
+            <div id="button-container"></div>
+            <a 
+              class="btn btn-outline-success mb-3 mt-3"
+              href="{% url 'cart:thank-you' %}"
+              role="button"
+              id="alertSuccess"
+            >
+              Your payment was successful.
+            </a>
+            <input
+              class="btn btn-outline-danger mb-3"
+              type="button"
+              id="alertFailure"
+              value="Your payment failed. Please try again."
+              onclick="showMessage()"
+            />
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock content %} {% block scripts %}
+{% endblock content %} 
+{% block scripts %}
 <script>
   function showMessage() {
     alert("Your payment failed. Please try again.");
