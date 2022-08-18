@@ -9,9 +9,8 @@ environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['127.0.0.1', 'walshop-shopping.herokuapp.com/']
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
