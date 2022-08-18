@@ -1,5 +1,8 @@
 import os
 import environ
+import dj_database_url
+import django_on_heroku
+from decouple import config
 
 env = environ.Env()
 
@@ -10,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com/', '127.0.0.1']
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -113,6 +116,10 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+django_on_heroku.settings(locals())
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 # if DEBUG is False:
 #     SESSION_COOKIE_SECURE = True
