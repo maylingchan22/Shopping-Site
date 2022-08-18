@@ -1,1 +1,2 @@
-web:gunicorn web_project.wsgi
+web: gunicorn config.wsgi
+release: python manage.py migrate
