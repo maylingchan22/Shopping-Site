@@ -1,4 +1,4 @@
-#!/Users/maychan/Desktop/Shopping-Site/.venv/bin/python
+#!/Users/maychan/Desktop/Shopping-Site/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
