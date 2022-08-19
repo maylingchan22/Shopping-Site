@@ -1,8 +1,6 @@
 import os
 import environ
 import dj_database_url
-import django_on_heroku
-from decouple import config
 
 env = environ.Env()
 
@@ -117,11 +115,8 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 DATABASES = {
     'default': {
@@ -133,6 +128,11 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # if DEBUG is False:
 #     SESSION_COOKIE_SECURE = True
