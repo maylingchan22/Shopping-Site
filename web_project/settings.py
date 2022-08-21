@@ -17,7 +17,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['test-1234098.herokuapp.com']
+ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
 
 INSTALLED_APPS = [
     'crispy_forms',
