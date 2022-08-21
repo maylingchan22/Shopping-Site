@@ -9,13 +9,13 @@ import environ
 
 SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = 'qeadfjhaklnmxzoioq9143218sjkdq09jal'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEBUG = False
-# DEBUG = True
+
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['test-1234098.herokuapp.com']
+ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
 
 INSTALLED_APPS = [
     'crispy_forms',
@@ -70,24 +70,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# DATABASES = {}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
-
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'dekf5e4k54kvjj',
-#             'USER': 'nsgenmjzwdaibl',
-#             'PASSWORD': '92d2bc013fc2bbd142c230d1c9eb01bb53e6992afc928f15355429b8e36626f7',
-#             'HOST': 'ec2-44-205-64-253.compute-1.amazonaws.com',
-#             'PORT': '5432',
-#         }
-#     }
-
-# DATABASES = {
-#         'default': dj_database_url.config(),
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -153,41 +135,36 @@ LOGIN_REDIRECT_URL = '/'
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 django_on_heroku.settings(locals(), staticfiles=False)
-# options = DATABASES['default'].get('OPTIONS', {})
-# options.pop('sslmode', None)
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
-                       'pathname=%(pathname)s lineno=%(lineno)s ' +
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'testlogger': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        }
-    }
-}
-
-# DEBUG_PROPAGATE_EXCEPTIONS = True
-# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+#                        'pathname=%(pathname)s lineno=%(lineno)s ' +
+#                        'funcname=%(funcName)s %(message)s'),
+#             'datefmt': '%Y-%m-%d %H:%M:%S'
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         }
+#     },
+#     'handlers': {
+#         'null': {
+#             'level': 'DEBUG',
+#             'class': 'logging.NullHandler',
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'verbose'
+#         }
+#     },
+#     'loggers': {
+#         'testlogger': {
+#             'handlers': ['console'],
+#             'level': 'INFO',
+#         }
+#     }
+# }
