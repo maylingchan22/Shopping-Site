@@ -25,7 +25,9 @@
                 <form method="POST">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit message"/>
+                    <button type="submit" class="btn btn-sm btn-primary buy-now">
+                        Submit message
+                    </button>
             </div>
         </div>
     </div>

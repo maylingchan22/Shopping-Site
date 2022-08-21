@@ -1,41 +1,36 @@
 import os
-import environ
+import sqlite3
+import django_on_heroku
 import dj_database_url
+import environ
 
-env = environ.Env()
+# env = environ.Env()
+# environ.Env.read_env()
 
-# read the .env file
-environ.Env.read_env()
-
+SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env('DEBUG')
+SECRET_KEY = 'qeadfjhaklnmxzoioq9143218sjkdq09jal'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-ALLOWED_HOSTS = ['127.0.0.1', 'walshop-shopping.herokuapp.com']
+DEBUG = False
+# DEBUG = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['test-1234098.herokuapp.com']
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-
     'cart',
-    'crispy_forms',
     'core'
 ]
-
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
-NOTIFY_EMAIL = env('NOTIFY_EMAIL')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,12 +63,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web_project.wsgi.application'
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'dekf5e4k54kvjj',
+#             'USER': 'nsgenmjzwdaibl',
+#             'PASSWORD': '92d2bc013fc2bbd142c230d1c9eb01bb53e6992afc928f15355429b8e36626f7',
+#             'HOST': 'ec2-44-205-64-253.compute-1.amazonaws.com',
+#             'PORT': '5432',
+#         }
+#     }
+
+# DATABASES = {
+#         'default': dj_database_url.config(),
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -95,6 +109,11 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -102,58 +121,73 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.ftp.FTPStorage'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
+LOGIN_REDIRECT_URL = '/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+# EMAIL_USE_TLS = True
+# SERVER_EMAIL = EMAIL_HOST_USER
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '<database_name>',
-        'USER': '<user_name>',
-        'PASSWORD': '<password>',
-        'HOST': 'localhost',
-        'PORT': '',
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+django_on_heroku.settings(locals(), staticfiles=False)
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode', None)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
+                       'pathname=%(pathname)s lineno=%(lineno)s ' +
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'testlogger': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        }
     }
 }
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# if DEBUG is False:
-#     SESSION_COOKIE_SECURE = True
-#     SECURE_BROWSER_XSS_FILTER = True
-#     SECURE_CONTENT_TYPE_NOSNIFF = True
-#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-#     SECURE_HSTS_SECONDS = 31536000
-#     SECURE_REDIRECT_EXEMPT = []
-#     SECURE_SSL_REDIRECT = True
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-#     ALLOWED_HOSTS = ['127.0.0.1', 'walshop-shopping.herokuapp.com/']
-#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': '',
-#             'USER': '',
-#             'PASSWORD': '',
-#             'HOST': '',
-#             'PORT': '',
-#         }
-#     }
+# DEBUG_PROPAGATE_EXCEPTIONS = True
+# COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
