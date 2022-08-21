@@ -20,7 +20,6 @@
             <thead>
               <tr>
                 <th>Product</th>
-                <th>Image</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -30,9 +29,6 @@
             <tbody>
               {% for item in order.items.all %}
               <tr>
-                <td class="product-thumbnail">
-                  <img src="{{item.product.image.url}}" class="img-fluid" />
-                </td>
                 <td class="product-name">
                   <h2 class="h5 text-black">{{item.product.title}}</h2>
                   <small>Size: {{item.size.name}}</small>
