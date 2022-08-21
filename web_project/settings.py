@@ -8,15 +8,13 @@ env = environ.Env()
 environ.Env.read_env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# SECRET_KEY='qeadfjhaklnmxzoioq9143218sjkdq09jal'
 SECRET_KEY = os.environ.get('SECRET_KEY')
-# DEBUG=False
 DEBUG = os.environ.get('DEBUG')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
 
 INSTALLED_APPS = [
     'crispy_forms',
