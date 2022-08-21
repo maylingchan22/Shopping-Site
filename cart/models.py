@@ -56,6 +56,7 @@ class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(unique=True)
     price = models.IntegerField(default=0)  # price set in cents
+    image = models.ImageField(upload_to="product_images")
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
