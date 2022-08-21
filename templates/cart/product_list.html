@@ -19,7 +19,8 @@
         <div class="row mb-5">
           {% for product in object_list %}
           <div class="col-sm-6 col-md-6 col-lg-4 mb-4" data-aos="fade-up">
-            <figure class="block-4-image"></figure>
+            <figure class="block-4-image">
+            </figure>
             <div class="block-4-text p-4">
               <a href="{{product.get_absolute_url}}"
                 ><h3>{{ product.title }}</h3></a
