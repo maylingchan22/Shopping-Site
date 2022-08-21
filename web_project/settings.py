@@ -7,7 +7,6 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY='qeadfjhaklnmxzoioq9143218sjkdq09jal'
 SECRET_KEY = os.environ.get('SECRET_KEY')
