@@ -4,18 +4,17 @@ import django_on_heroku
 import dj_database_url
 import environ
 
-# env = environ.Env()
-# environ.Env.read_env()
+env = environ.Env()
+environ.Env.read_env()
 
-SQLALCHEMY_DATABASE_URL = os.environ.get('DATABASE_URL')
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['walshop-shopping.herokuapp.com']
 
 INSTALLED_APPS = [
     'crispy_forms',
