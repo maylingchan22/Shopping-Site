@@ -1,10 +1,22 @@
-## Welcome to GitHub Pages
+# WalShop
 
-You can use the [editor on GitHub](https://github.com/maylingchan22/Shopping-Site/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Website link: https://walshop-may.herokuapp.com/
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Walshop is a online and simple clothing store concept, inspired by online wave of ecommerce during the past couple of years.**
 
-### Markdown
+Technologies: HTML/CSS/Boostrap/JavaScript/Postgresql/Python/Django
+
+### Here are my procedure for this project:
+
+   - Designed general layout of shopping store 
+   - Created fully responsive templates for initial signin/signup, home page, and contact form (Html/CSS/Bootstrap)
+   - Added Django to project to create models/views and functionality
+   - Added the package, django-allauth, package to help with authenication and user validation.
+   - Allowed CRUD operations for the product-list, product-editing with Django models and forms
+   - Deployed the website to an remote database via Heroku and Postgresql
+   - Separate each steps and structurized it to allow for easier debuging
+
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
