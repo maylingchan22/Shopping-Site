@@ -55,7 +55,7 @@ class SizeVariation(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=150)
     slug = models.SlugField(unique=True)
-    
+    image = models.ImageField()
     price = models.IntegerField(default=0)  # price set in cents
     description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
