@@ -19,32 +19,5 @@ Technologies: HTML/CSS/Boostrap/JavaScript/Postgresql/Python/Django
 ## Desktop View:
 ![Screen Shot 2022-08-21 at 2 34 18 PM](https://user-images.githubusercontent.com/91612351/185807161-32b7bc2f-6d6c-45cf-9e3d-8285fad80bbe.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/maylingchan22/Shopping-Site/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Mobile View:
+https://user-images.githubusercontent.com/91612351/185808404-90022964-14d7-4366-b0ca-689005b29bc7.mp4
