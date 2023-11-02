@@ -1,6 +1,5 @@
 # WalShop
 
-## Website link: https://walshop-may.herokuapp.com/
 
 **Walshop is a online and simple clothing store concept, inspired by online wave of ecommerce during the past couple of years.**
 
